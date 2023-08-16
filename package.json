@@ -1,0 +1,75 @@
+{
+  "name": "vite-plugin-sirv",
+  "version": "0.0.0",
+  "packageManager": "pnpm@8.6.12",
+  "description": "vite-plugin-sirv",
+  "author": "LoTwT <l709937065@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/LoTwT/vite-plugin-sirv#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoTwT/vite-plugin-sirv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LoTwT/vite-plugin-sirv/issues"
+  },
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "watch": "tsup --watch",
+    "build": "tsup",
+    "lint": "eslint .",
+    "prettier": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "prepublishOnly": "pnpm build",
+    "release": "bumpp && npm publish",
+    "prepare": "simple-git-hooks",
+    "up": "taze latest -I"
+  },
+  "devDependencies": {
+    "@ayingott/eslint-config": "^0.2.7",
+    "@types/node": "^20.5.0",
+    "bumpp": "^9.1.1",
+    "eslint": "^8.47.0",
+    "lint-staged": "^14.0.0",
+    "pnpm": "^8.6.12",
+    "prettier": "^3.0.2",
+    "simple-git-hooks": "^2.9.0",
+    "taze": "^0.11.2",
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.6",
+    "unplugin-auto-import": "^0.16.6",
+    "vitest": "^0.34.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  },
+  "eslintConfig": {
+    "extends": "@ayingott/eslint-config"
+  }
+}
