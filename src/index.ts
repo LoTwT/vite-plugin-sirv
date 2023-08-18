@@ -1,12 +1,19 @@
 import type { Plugin, PreviewServerForHook, ViteDevServer } from "vite"
 import type { Options as SirvOptions } from "sirv"
 import sirv from "sirv"
-import { defu } from "defu"
+import { lookup } from "mrmime"
+import { composeFunctions } from "@ayingott/sucrose"
 
 const defaultConfig: VitePluginSirvConfig = {
   route: "/",
   enforce: "pre",
-  options: {},
+  options: {
+    setHeaders: (res, pathname) => {
+      if (!lookup(pathname)) {
+        res.setHeader("content-type", "text/plain")
+      }
+    },
+  },
 }
 
 export interface VitePluginSirvConfig {
@@ -38,9 +45,21 @@ export default function (config: VitePluginSirvConfig): Plugin {
 
     configResolved: (configResolved) => {
       defaultConfig.options = {
+        ...defaultConfig.options,
         dev: configResolved.mode === "development",
       }
-      resolvedConfig = defu(config, defaultConfig)
+      resolvedConfig = {
+        ...defaultConfig,
+        ...config,
+        options: {
+          ...defaultConfig.options,
+          ...config.options,
+          setHeaders: composeFunctions(
+            defaultConfig?.options?.setHeaders,
+            config?.options?.setHeaders,
+          ),
+        },
+      }
     },
 
     configureServer: (server) => {

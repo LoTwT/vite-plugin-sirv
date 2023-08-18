@@ -8,6 +8,9 @@ export default defineConfig({
     VitePluginSirv({
       dir: "src/components",
       route: "raw",
+      options: {
+        setHeaders() {},
+      },
     }),
     vue(),
   ],

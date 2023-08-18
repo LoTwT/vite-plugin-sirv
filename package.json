@@ -50,10 +50,12 @@
   },
   "dependencies": {
     "defu": "^6.1.2",
+    "mrmime": "^1.0.1",
     "sirv": "^2.0.3"
   },
   "devDependencies": {
     "@ayingott/eslint-config": "^0.2.7",
+    "@ayingott/sucrose": "^0.0.31",
     "@types/node": "^20.5.0",
     "bumpp": "^9.1.1",
     "eslint": "^8.47.0",
