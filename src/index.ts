@@ -1,8 +1,8 @@
-import type { Plugin, PreviewServerForHook, ViteDevServer } from "vite"
-import type { Options as SirvOptions } from "sirv"
 import sirv from "sirv"
 import { lookup } from "mrmime"
 import { composeFunctions } from "@ayingott/sucrose"
+import type { Options as SirvOptions } from "sirv"
+import type { Plugin, PreviewServerForHook, ViteDevServer } from "vite"
 
 const defaultConfig: VitePluginSirvConfig = {
   route: "/",

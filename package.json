@@ -1,8 +1,8 @@
 {
   "name": "vite-plugin-sirv",
   "version": "0.0.2",
-  "packageManager": "pnpm@8.8.0",
   "description": "vite-plugin-sirv",
+  "packageManager": "pnpm@8.14.1",
   "author": "LoTwT <l709937065@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/LoTwT/vite-plugin-sirv#readme",
@@ -37,46 +37,48 @@
     "dist"
   ],
   "scripts": {
-    "watch": "tsup --watch",
     "build": "tsup",
     "lint": "eslint .",
-    "prettier": "prettier --write .",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest",
-    "prepublishOnly": "pnpm build",
-    "release": "bumpp && npm publish",
     "prepare": "simple-git-hooks",
-    "up": "taze latest -I"
+    "prepublishOnly": "pnpm build",
+    "prettier": "prettier --write .",
+    "release": "bumpp && npm publish",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "up": "taze latest -I",
+    "watch": "tsup --watch"
   },
   "dependencies": {
     "@ayingott/sucrose": "^0.0.34",
-    "defu": "^6.1.2",
-    "mrmime": "^1.0.1",
-    "sirv": "^2.0.3"
+    "defu": "^6.1.4",
+    "mrmime": "^2.0.0",
+    "sirv": "^2.0.4"
   },
   "devDependencies": {
-    "@ayingott/eslint-config": "^0.2.7",
-    "@types/node": "^20.7.1",
-    "bumpp": "^9.2.0",
-    "eslint": "^8.50.0",
-    "lint-staged": "^14.0.1",
-    "pnpm": "^8.8.0",
-    "prettier": "^3.0.3",
+    "@ayingott/eslint-config": "^0.7.7",
+    "@ayingott/prettier-config": "^0.1.4",
+    "@types/node": "^20.11.5",
+    "bumpp": "^9.3.0",
+    "eslint": "^8.56.0",
+    "lint-staged": "^15.2.0",
+    "pnpm": "^8.14.1",
+    "prettier": "^3.2.4",
     "simple-git-hooks": "^2.9.0",
-    "taze": "^0.11.3",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2",
-    "unplugin-auto-import": "^0.16.6",
-    "vite": "^4.4.9",
-    "vitest": "^0.34.5"
+    "taze": "^0.13.1",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "unplugin-auto-import": "^0.17.3",
+    "vite": "^5.0.12",
+    "vitest": "^1.2.1"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm exec lint-staged"
   },
   "lint-staged": {
-    "*": "eslint --fix"
+    "*": [
+      "eslint --fix",
+      "prettier --write --ignore-unknown"
+    ]
   },
-  "eslintConfig": {
-    "extends": "@ayingott/eslint-config"
-  }
+  "prettier": "@ayingott/prettier-config"
 }
